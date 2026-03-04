@@ -62,7 +62,7 @@ MonoBehaviour:
       Data: 3|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: Gems.UI.Base, Assembly-CSharp
+      Data: Gems.UI.Base, com.jaz.gems
     - Name: 
       Entry: 8
       Data: 
@@ -128,7 +128,7 @@ MonoBehaviour:
       Data: 8|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: Gems.UI.RadioSelectionGroup, Assembly-CSharp
+      Data: Gems.UI.RadioSelectionGroup, com.jaz.gems
     - Name: 
       Entry: 8
       Data: 

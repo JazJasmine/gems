@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c333ccfdd0cbdbc4ca30cef2dd6e6b9b, type: 3}
   m_Name: Gemcraft Udon C# Program Asset
   m_EditorClassIdentifier: 
-  serializedUdonProgramAsset: {fileID: 11400000, guid: cce62d145f8119d448eec2e8f82d90fb,
+  serializedUdonProgramAsset: {fileID: 11400000, guid: 2172a3842a892884b90da01e42b6fd34,
     type: 2}
   udonAssembly: 
   assemblyError: 
@@ -21,7 +21,7 @@ MonoBehaviour:
   compiledVersion: 2
   behaviourSyncMode: 0
   hasInteractEvent: 0
-  scriptID: -5528091050555001266
+  scriptID: 8013232932545533478
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
@@ -116,7 +116,7 @@ MonoBehaviour:
       Data: 6|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: GemcraftData, Assembly-CSharp
+      Data: Gems.Games.GemcraftData, com.jaz.gems
     - Name: 
       Entry: 8
       Data: 
@@ -182,7 +182,7 @@ MonoBehaviour:
       Data: 11|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: GemcraftUI, Assembly-CSharp
+      Data: Gems.Games.GemcraftUI, com.jaz.gems
     - Name: 
       Entry: 8
       Data: 
@@ -242,7 +242,7 @@ MonoBehaviour:
       Data: 15|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: EssenceModifer, Assembly-CSharp
+      Data: Gems.Games.EssenceModifer, com.jaz.gems
     - Name: 
       Entry: 8
       Data: 

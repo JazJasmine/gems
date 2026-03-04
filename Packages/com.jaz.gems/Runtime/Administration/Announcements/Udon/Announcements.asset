@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c333ccfdd0cbdbc4ca30cef2dd6e6b9b, type: 3}
   m_Name: Announcements
   m_EditorClassIdentifier: 
-  serializedUdonProgramAsset: {fileID: 11400000, guid: e208891e076204748a8fad096d3dcc99,
+  serializedUdonProgramAsset: {fileID: 11400000, guid: 1e42d2dea1810134fbfeb51ae4fa6b14,
     type: 2}
   udonAssembly: 
   assemblyError: 
@@ -21,7 +21,7 @@ MonoBehaviour:
   compiledVersion: 2
   behaviourSyncMode: 0
   hasInteractEvent: 0
-  scriptID: -6818035165077961986
+  scriptID: 1373087685336614338
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
@@ -62,7 +62,7 @@ MonoBehaviour:
       Data: 3|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: ToastTracking, Assembly-CSharp
+      Data: Gems.Administration.ToastTracking, com.jaz.gems
     - Name: 
       Entry: 8
       Data: 

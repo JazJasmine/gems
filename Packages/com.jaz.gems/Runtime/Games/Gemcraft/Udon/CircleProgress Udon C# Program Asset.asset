@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c333ccfdd0cbdbc4ca30cef2dd6e6b9b, type: 3}
   m_Name: CircleProgress Udon C# Program Asset
   m_EditorClassIdentifier: 
-  serializedUdonProgramAsset: {fileID: 11400000, guid: 9a654d0f063782245a5e17368ba6017c,
+  serializedUdonProgramAsset: {fileID: 11400000, guid: cd0ede7dc965d77499b0671e123f8bad,
     type: 2}
   udonAssembly: 
   assemblyError: 
@@ -21,7 +21,7 @@ MonoBehaviour:
   compiledVersion: 2
   behaviourSyncMode: 0
   hasInteractEvent: 0
-  scriptID: -767268919066731862
+  scriptID: 1607046948837146047
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 

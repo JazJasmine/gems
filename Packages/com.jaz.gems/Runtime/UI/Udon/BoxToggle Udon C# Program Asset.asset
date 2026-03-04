@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c333ccfdd0cbdbc4ca30cef2dd6e6b9b, type: 3}
   m_Name: BoxToggle Udon C# Program Asset
   m_EditorClassIdentifier: 
-  serializedUdonProgramAsset: {fileID: 11400000, guid: 987c630180eadfb4e9f055185e404228,
+  serializedUdonProgramAsset: {fileID: 11400000, guid: 9f22dc4628da0ce4db580b63f2613c73,
     type: 2}
   udonAssembly: 
   assemblyError: 
@@ -62,7 +62,7 @@ MonoBehaviour:
       Data: 3|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: GemTheme, Assembly-CSharp
+      Data: GemTheme, com.jaz.gems
     - Name: 
       Entry: 8
       Data: 

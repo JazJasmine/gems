@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c333ccfdd0cbdbc4ca30cef2dd6e6b9b, type: 3}
   m_Name: Selection Udon C# Program Asset
   m_EditorClassIdentifier: 
-  serializedUdonProgramAsset: {fileID: 11400000, guid: a24db9527f65b0d4bab50a4c94ccd61e,
+  serializedUdonProgramAsset: {fileID: 11400000, guid: 8c24de46cb5b7d440a1abab4f259e0e3,
     type: 2}
   udonAssembly: 
   assemblyError: 
@@ -62,7 +62,7 @@ MonoBehaviour:
       Data: 3|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: GemTheme, Assembly-CSharp
+      Data: GemTheme, com.jaz.gems
     - Name: 
       Entry: 8
       Data: 
@@ -299,7 +299,7 @@ MonoBehaviour:
       Data: 18|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: Gems.UI.RadioSelectionGroup, Assembly-CSharp
+      Data: Gems.UI.RadioSelectionGroup, com.jaz.gems
     - Name: 
       Entry: 8
       Data: 

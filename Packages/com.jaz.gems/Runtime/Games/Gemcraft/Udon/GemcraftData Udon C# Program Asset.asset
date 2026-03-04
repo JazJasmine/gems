@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c333ccfdd0cbdbc4ca30cef2dd6e6b9b, type: 3}
   m_Name: GemcraftData Udon C# Program Asset
   m_EditorClassIdentifier: 
-  serializedUdonProgramAsset: {fileID: 11400000, guid: 8d3a46c6fb95b634caf3fcb9aa34c03a,
+  serializedUdonProgramAsset: {fileID: 11400000, guid: 0fee3c9359c88db4c9ac5305b8ac1f5f,
     type: 2}
   udonAssembly: 
   assemblyError: 
@@ -21,7 +21,7 @@ MonoBehaviour:
   compiledVersion: 2
   behaviourSyncMode: 3
   hasInteractEvent: 0
-  scriptID: -3627871087897988010
+  scriptID: -399783284656119320
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c333ccfdd0cbdbc4ca30cef2dd6e6b9b, type: 3}
   m_Name: GemcraftUI Udon C# Program Asset
   m_EditorClassIdentifier: 
-  serializedUdonProgramAsset: {fileID: 11400000, guid: e44add29e680c6544be84b2731c0f712,
+  serializedUdonProgramAsset: {fileID: 11400000, guid: d23daba1e00617c44970443845156ab2,
     type: 2}
   udonAssembly: 
   assemblyError: 
@@ -21,7 +21,7 @@ MonoBehaviour:
   compiledVersion: 2
   behaviourSyncMode: 0
   hasInteractEvent: 0
-  scriptID: 8344752679565112488
+  scriptID: 7065449188771212903
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
@@ -62,7 +62,7 @@ MonoBehaviour:
       Data: 3|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: Gemcraft, Assembly-CSharp
+      Data: Gems.Games.Gemcraft, com.jaz.gems
     - Name: 
       Entry: 8
       Data: 
@@ -812,7 +812,7 @@ MonoBehaviour:
       Data: 38|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: RankRow[], Assembly-CSharp
+      Data: Gems.Games.RankRow[], com.jaz.gems
     - Name: 
       Entry: 8
       Data: 
@@ -887,7 +887,7 @@ MonoBehaviour:
       Data: 44|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: RankRow, Assembly-CSharp
+      Data: Gems.Games.RankRow, com.jaz.gems
     - Name: 
       Entry: 8
       Data: 
@@ -947,7 +947,7 @@ MonoBehaviour:
       Data: 48|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: Gems.UI.Dropdown, Assembly-CSharp
+      Data: Gems.UI.Dropdown, com.jaz.gems
     - Name: 
       Entry: 8
       Data: 
@@ -1304,7 +1304,7 @@ MonoBehaviour:
       Data: 71|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: Gems.UI.Button, Assembly-CSharp
+      Data: Gems.UI.Button, com.jaz.gems
     - Name: 
       Entry: 8
       Data: 
@@ -1586,7 +1586,7 @@ MonoBehaviour:
       Data: 88|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: CircleGemProgress, Assembly-CSharp
+      Data: Gems.Games.CircleGemProgress, com.jaz.gems
     - Name: 
       Entry: 8
       Data: 
@@ -1646,7 +1646,7 @@ MonoBehaviour:
       Data: 92|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: CircleGemProgress[], Assembly-CSharp
+      Data: Gems.Games.CircleGemProgress[], com.jaz.gems
     - Name: 
       Entry: 8
       Data: 

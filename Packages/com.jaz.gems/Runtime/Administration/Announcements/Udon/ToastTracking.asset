@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c333ccfdd0cbdbc4ca30cef2dd6e6b9b, type: 3}
   m_Name: ToastTracking
   m_EditorClassIdentifier: 
-  serializedUdonProgramAsset: {fileID: 11400000, guid: cd240de3f73f54a44a96a657c72cf4a0,
+  serializedUdonProgramAsset: {fileID: 11400000, guid: 817dc4164aa2f72459363d95ecc2b4be,
     type: 2}
   udonAssembly: 
   assemblyError: 
@@ -21,7 +21,7 @@ MonoBehaviour:
   compiledVersion: 2
   behaviourSyncMode: 0
   hasInteractEvent: 0
-  scriptID: 5555283621261646870
+  scriptID: -1147092165889993823
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 

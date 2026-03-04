@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c333ccfdd0cbdbc4ca30cef2dd6e6b9b, type: 3}
   m_Name: RadioSelectionGroup Udon C# Program Asset
   m_EditorClassIdentifier: 
-  serializedUdonProgramAsset: {fileID: 11400000, guid: 7944cd7e242fc1f469ab70e9e8240e85,
+  serializedUdonProgramAsset: {fileID: 11400000, guid: 957ae4efcb1e11346887380955543b4c,
     type: 2}
   udonAssembly: 
   assemblyError: 
@@ -131,7 +131,7 @@ MonoBehaviour:
       Data: 8|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: Gems.UI.RadioSelection[], Assembly-CSharp
+      Data: Gems.UI.RadioSelection[], com.jaz.gems
     - Name: 
       Entry: 8
       Data: 

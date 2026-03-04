@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c333ccfdd0cbdbc4ca30cef2dd6e6b9b, type: 3}
   m_Name: PrivateRoomTeleporter
   m_EditorClassIdentifier: 
-  serializedUdonProgramAsset: {fileID: 11400000, guid: 2aabf844122fd4c46a3efb8092acce0a,
+  serializedUdonProgramAsset: {fileID: 11400000, guid: edd8d490203bcda4e89c0fdb79e5069b,
     type: 2}
   udonAssembly: 
   assemblyError: 
@@ -21,7 +21,7 @@ MonoBehaviour:
   compiledVersion: 2
   behaviourSyncMode: 0
   hasInteractEvent: 1
-  scriptID: -2462898960280276435
+  scriptID: 2120607851419895098
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
@@ -62,7 +62,7 @@ MonoBehaviour:
       Data: 3|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: Gems.PrivateRoom, Assembly-CSharp
+      Data: Gems.Rooms.PrivateRoom, com.jaz.gems
     - Name: 
       Entry: 8
       Data: 
