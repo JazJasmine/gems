@@ -585,7 +585,7 @@ GameObject:
   - component: {fileID: 144481053405325931}
   - component: {fileID: 5798536178704016986}
   m_Layer: 0
-  m_Name: Announcements
+  m_Name: TextAnnouncer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

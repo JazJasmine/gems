@@ -6,20 +6,24 @@ using VRC.Udon;
 
 namespace Gems
 {
-    public class PrivateRoomTeleporter : UdonSharpBehaviour
+    namespace Rooms
     {
-        [SerializeField] PrivateRoom room;
-        [SerializeField] bool IsExit;
 
-        public override void Interact()
+        public class PrivateRoomTeleporter : UdonSharpBehaviour
         {
-            if (IsExit)
+            [SerializeField] PrivateRoom room;
+            [SerializeField] bool IsExit;
+
+            public override void Interact()
             {
-                room._Exit();
-            }
-            else
-            {
-                room._Enter();
+                if (IsExit)
+                {
+                    room._Exit();
+                }
+                else
+                {
+                    room._Enter();
+                }
             }
         }
     }

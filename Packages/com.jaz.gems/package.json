@@ -1,8 +1,8 @@
 {
   "name": "com.jaz.gems",
   "displayName": "Jaz's Gems",
-  "version": "0.0.2",
-  "description": "Describe this Package",
+  "version": "0.0.3",
+  "description": "Common Library for my World Development",
   "gitDependencies": {},
   "vpmDependencies": {
     "com.vrchat.worlds": "3.10.2"
