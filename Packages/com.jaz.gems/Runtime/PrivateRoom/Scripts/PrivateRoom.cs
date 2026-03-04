@@ -14,7 +14,6 @@ namespace Gems
 
         [UdonSynced, FieldChangeCallback(nameof(IsLocked))] bool isLocked;
         [UdonSynced, FieldChangeCallback(nameof(IsOccupied))] bool isOccupied;
-        [UdonSynced, FieldChangeCallback(nameof(PrivacyShutter))] bool privacyShutter;
 
         [UdonSynced, FieldChangeCallback(nameof(_PlayerListJson))] string _playerListJson;
         DataList playerList = new DataList();
@@ -22,26 +21,18 @@ namespace Gems
 
         [SerializeField] Transform enterSpawn;
         [SerializeField] Transform exitSpawn;
-        [SerializeField] UI.BoxToggle toggle;
-        [SerializeField] UI.BoxToggle toggle1;
-        [SerializeField] UI.BoxToggle toggle2;
+        [SerializeField] UI.BoxToggle lockToggle;
 
         [SerializeField] MeshRenderer doorNumber;
         [SerializeField] Material openMaterial;
         [SerializeField] Material occupiedMaterial;
         [SerializeField] Material lockedMaterial;
 
-        [SerializeField] GameObject videoCamera;
-        [SerializeField] GameObject shutter;
-        [SerializeField] GameObject cameraScreen;
-        [SerializeField] Cinema cinema;
-
         private void Start()
         {
             localPlayer = Networking.LocalPlayer;
             IsLocked = false;
             IsOccupied = false;
-            PrivacyShutter = true;
         }
 
         public override void OnPlayerTriggerEnter(VRCPlayerApi player)
@@ -60,12 +51,6 @@ namespace Gems
 
         public override void OnPlayerTriggerExit(VRCPlayerApi player)
         {
-            if (player.isLocal)
-            {
-                _CameraView(false);
-                toggle2.State = false;
-            }
-
             if (!Networking.IsOwner(localPlayer, gameObject)) return;
             if (!Contains(playerList, player.playerId)) return;
             Remove(playerList, player.playerId);
@@ -80,7 +65,6 @@ namespace Gems
             {
                 IsOccupied = false;
                 IsLocked = false;
-                PrivacyShutter = true;
             }
             RequestSerialization();
         }
@@ -101,7 +85,6 @@ namespace Gems
             {
                 IsOccupied = false;
                 IsLocked = false;
-                PrivacyShutter = true;
             }
             RequestSerialization();
         }
@@ -130,13 +113,6 @@ namespace Gems
             SendCustomNetworkEvent(VRC.Udon.Common.Interfaces.NetworkEventTarget.Owner, "ToggleShutter", state);
         }
 
-        [NetworkCallable]
-        public void _CameraView(bool state)
-        {
-            cameraScreen.SetActive(state);
-            videoCamera.SetActive(state);
-        }
-
         void UpdateLockIndicator()
         {
             if (IsLocked)
@@ -158,13 +134,6 @@ namespace Gems
         public void LockRoom(bool state)
         {
             IsLocked = state;
-            RequestSerialization();
-        }
-
-        [NetworkCallable]
-        public void ToggleShutter(bool state)
-        {
-            PrivacyShutter = state;
             RequestSerialization();
         }
 
@@ -200,7 +169,7 @@ namespace Gems
             set
             {
                 isLocked = value;
-                toggle.State = value;
+                lockToggle.State = value;
                 UpdateLockIndicator();
             }
         }
@@ -212,20 +181,6 @@ namespace Gems
             {
                 isOccupied = value;
                 UpdateLockIndicator();
-            }
-        }
-
-        public bool PrivacyShutter
-        {
-            get => privacyShutter;
-            set
-            {
-                privacyShutter = value;
-                toggle1.State = value;
-
-                shutter.SetActive(privacyShutter);
-                // Update Camera manager?
-                cinema.UpdateRadioButton(roomNumber, privacyShutter);
             }
         }
 
