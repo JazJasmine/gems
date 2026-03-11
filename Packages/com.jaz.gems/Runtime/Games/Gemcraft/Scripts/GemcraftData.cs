@@ -8,7 +8,7 @@ namespace Gems
     namespace Games
     {
         [UdonBehaviourSyncMode(BehaviourSyncMode.Continuous)]
-        public class GemcraftData : UdonSharpBehaviour
+        public class GemcraftData : EmeraldBehaviour
         {
             VRCPlayerApi owner;
             [UdonSynced] int prestige;

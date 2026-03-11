@@ -9,7 +9,7 @@ namespace Gems
 {
     namespace Games
     {
-        public class CircleGemProgress : UdonSharpBehaviour
+        public class CircleGemProgress : EmeraldBehaviour
         {
             [SerializeField] GameObject unknownGameobject;
             [SerializeField] GameObject knownGameobject;

@@ -1,5 +1,4 @@
-﻿using Gems;
-using UdonSharp;
+﻿using UdonSharp;
 using UnityEngine;
 using VRC.SDK3.Data;
 using VRC.SDK3.UdonNetworkCalling;
@@ -11,7 +10,7 @@ namespace Gems
     {
 
         [UdonBehaviourSyncMode(BehaviourSyncMode.Manual)]
-        public class PrivateRoom : UdonSharpBehaviour
+        public class PrivateRoom : EmeraldBehaviour
         {
             [SerializeField] int roomNumber;
 

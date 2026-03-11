@@ -9,7 +9,7 @@ namespace Gems
 {
     namespace Administration
     {
-        public class ToastTracking : UdonSharpBehaviour
+        public class ToastTracking : EmeraldBehaviour
         {
             public TextMeshProUGUI textMesh;
 

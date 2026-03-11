@@ -12,7 +12,7 @@ namespace Gems
 {
     namespace Games
     {
-        public class GemcraftUI : UdonSharpBehaviour
+        public class GemcraftUI : EmeraldBehaviour
         {
             [SerializeField] Gemcraft gemcraft;
 

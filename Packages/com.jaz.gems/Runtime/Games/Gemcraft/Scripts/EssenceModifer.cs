@@ -7,7 +7,7 @@ namespace Gems
 {
     namespace Games
     {
-        public class EssenceModifer : UdonSharpBehaviour
+        public class EssenceModifer : EmeraldBehaviour
         {
             [SerializeField] GemcraftUI ui;
 

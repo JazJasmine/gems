@@ -9,7 +9,7 @@ namespace Gems
 {
     namespace Administration
     {
-        public class TextAnnouncer : UdonSharpBehaviour
+        public class TextAnnouncer : EmeraldBehaviour
         {
             [SerializeField] ToastTracking toast;
             VRCPlayerApi localPlayer;

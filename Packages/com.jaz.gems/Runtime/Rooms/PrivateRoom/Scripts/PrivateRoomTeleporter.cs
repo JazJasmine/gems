@@ -9,7 +9,7 @@ namespace Gems
     namespace Rooms
     {
 
-        public class PrivateRoomTeleporter : UdonSharpBehaviour
+        public class PrivateRoomTeleporter : EmeraldBehaviour
         {
             [SerializeField] PrivateRoom room;
             [SerializeField] bool IsExit;

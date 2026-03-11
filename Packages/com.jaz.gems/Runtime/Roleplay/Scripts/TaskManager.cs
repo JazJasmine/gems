@@ -4,12 +4,18 @@ using UnityEngine;
 using VRC.SDKBase;
 using VRC.Udon;
 
-public class TaskManager : UdonSharpBehaviour
+namespace Gems
 {
-    [SerializeField] RoleplayData data;
-
-    void Start()
+    namespace Roleplay
     {
-        
+        public class TaskManager : EmeraldBehaviour
+        {
+            [SerializeField] RoleplayData data;
+
+            void Start()
+            {
+
+            }
+        }
     }
 }

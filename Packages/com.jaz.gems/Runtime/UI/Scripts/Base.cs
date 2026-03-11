@@ -7,8 +7,9 @@ namespace Gems
     {
 
         // This is the Base UI that applies to every Element. It expects definition of a theme to apply on enable of UI elements
-        public class Base : UdonSharpBehaviour
+        public class Base : EmeraldBehaviour
         {
+            protected override string LogName => "Gems.UI.Base";
             public GemTheme Theme;
 
             [Header("Common Modifier")]
@@ -18,17 +19,17 @@ namespace Gems
 
             virtual protected void ApplyTheme()
             {
-                Debug.Log($"{gameObject.name} does NOT implement ApplyTheme method");
+                LogWarn($"{gameObject.name} does NOT implement ApplyTheme method");
             }
 
             virtual protected void _Enable()
             {
-                Debug.Log($"{gameObject.name} does NOT implement Enable method");
+                LogWarn($"{gameObject.name} does NOT implement Enable method");
             }
 
             virtual protected void _Disable()
             {
-                Debug.Log($"{gameObject.name} does NOT implement Disable method");
+                LogWarn($"{gameObject.name} does NOT implement Disable method");
             }
 
             private void OnEnable()

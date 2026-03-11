@@ -21,7 +21,7 @@ MonoBehaviour:
   compiledVersion: 2
   behaviourSyncMode: 0
   hasInteractEvent: 0
-  scriptID: 1078822274293886589
+  scriptID: -82400058904080742
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
@@ -62,7 +62,7 @@ MonoBehaviour:
       Data: 3|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: RoleplayData, com.jaz.gems
+      Data: Gems.Roleplay.RoleplayData, com.jaz.gems
     - Name: 
       Entry: 8
       Data: 

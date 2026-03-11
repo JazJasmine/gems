@@ -10,7 +10,7 @@ namespace Gems
 {
     namespace Games
     {
-        public class RankRow : UdonSharpBehaviour
+        public class RankRow : EmeraldBehaviour
         {
             [SerializeField] GameObject values;
 

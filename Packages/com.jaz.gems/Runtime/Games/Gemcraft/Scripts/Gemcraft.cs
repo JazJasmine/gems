@@ -21,7 +21,7 @@ namespace Gems
             Perfect = 5
         }
 
-        public class Gemcraft : UdonSharpBehaviour
+        public class Gemcraft : EmeraldBehaviour
         {
             bool isActive;
             [SerializeField] GemcraftData referenceGemData;

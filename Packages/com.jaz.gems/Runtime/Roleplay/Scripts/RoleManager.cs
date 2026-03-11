@@ -1,62 +1,67 @@
 ﻿
-using System.Linq;
 using UdonSharp;
 using UnityEngine;
 using VRC.SDK3.Data;
 using VRC.SDKBase;
 using VRC.Udon;
 
-public class RoleManager : UdonSharpBehaviour
+namespace Gems
 {
-    [SerializeField] Roleplayer referenceRoleplayer;
-    [SerializeField] RoleplayData data;
-
-    DataDictionary roleplayerByPlayer = new DataDictionary(); // {"jazjasmine": REFERENCE<R}
-    DataDictionary roleByPlayer = new DataDictionary(); // {"jazjasmine": "officeWorker", "fiction": "unassigned"}
-
-    private void Start()
+    namespace Roleplay
     {
-    }
+        public class RoleManager : EmeraldBehaviour
+        {
+            [SerializeField] Roleplayer referenceRoleplayer;
+            [SerializeField] RoleplayData data;
 
-    public override void OnPlayerJoined(VRCPlayerApi player)
-    {
-        // only Instance Owner need to keep track of this
-        if (!Networking.IsInstanceOwner) return;
+            DataDictionary roleplayerByPlayer = new DataDictionary(); // {"jazjasmine": REFERENCE<R}
+            DataDictionary roleByPlayer = new DataDictionary(); // {"jazjasmine": "officeWorker", "fiction": "unassigned"}
 
-        roleplayerByPlayer.Add(player.displayName, GetByPlayer(player));
-        roleByPlayer.Add(player.displayName, "unassigned");
-    }
+            private void Start()
+            {
+            }
 
-    public override void OnPlayerLeft(VRCPlayerApi player) 
-    {
-        // only Instance Owner need to keep track of this
-        if (!Networking.IsInstanceOwner) return;
+            public override void OnPlayerJoined(VRCPlayerApi player)
+            {
+                // only Instance Owner need to keep track of this
+                if (!Networking.IsInstanceOwner) return;
 
-        roleplayerByPlayer.Remove(player.displayName);
-        roleByPlayer.Remove(player.displayName); // -> might get a cooldown system
-    }
+                roleplayerByPlayer.Add(player.displayName, GetByPlayer(player));
+                roleByPlayer.Add(player.displayName, "unassigned");
+            }
 
-    public void _AssignRole(string playerName, string roleId)
-    {
-        if (!data.Roles.ContainsKey(roleId)) return;
-        if (roleplayerByPlayer.ContainsKey(playerName) && roleByPlayer.ContainsKey(playerName)) return;
+            public override void OnPlayerLeft(VRCPlayerApi player)
+            {
+                // only Instance Owner need to keep track of this
+                if (!Networking.IsInstanceOwner) return;
 
-        var role = data.Roles[roleId].DataDictionary;
+                roleplayerByPlayer.Remove(player.displayName);
+                roleByPlayer.Remove(player.displayName); // -> might get a cooldown system
+            }
 
-        roleByPlayer[playerName] = roleId;
+            public void _AssignRole(string playerName, string roleId)
+            {
+                if (!data.Roles.ContainsKey(roleId)) return;
+                if (roleplayerByPlayer.ContainsKey(playerName) && roleByPlayer.ContainsKey(playerName)) return;
 
-        // Update persons roleplay data
-        ((Roleplayer)roleplayerByPlayer[playerName].Reference).SendCustomNetworkEvent(VRC.Udon.Common.Interfaces.NetworkEventTarget.Owner, "AssignRole",
-            roleId, role["roleName"].String, role["description"].String, role["vibe"].String, role["behavior"].String, role["rules"].String);
-    }
+                var role = data.Roles[roleId].DataDictionary;
 
-    public void DEBUG_ASSIGN()
-    {
-        _AssignRole("[0] Local Player", "intern");
-    }
+                roleByPlayer[playerName] = roleId;
 
-    Roleplayer GetByPlayer(VRCPlayerApi player)
-    {
-        return (Roleplayer)Networking.FindComponentInPlayerObjects(player, referenceRoleplayer);
+                // Update persons roleplay data
+                ((Roleplayer)roleplayerByPlayer[playerName].Reference).SendCustomNetworkEvent(VRC.Udon.Common.Interfaces.NetworkEventTarget.Owner, "AssignRole",
+                    roleId, role["roleName"].String, role["description"].String, role["vibe"].String, role["behavior"].String, role["rules"].String);
+            }
+
+            public void DEBUG_ASSIGN()
+            {
+                _AssignRole("[0] Local Player", "intern");
+            }
+
+            Roleplayer GetByPlayer(VRCPlayerApi player)
+            {
+                return (Roleplayer)Networking.FindComponentInPlayerObjects(player, referenceRoleplayer);
+            }
+        }
     }
 }

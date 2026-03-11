@@ -10,7 +10,7 @@ namespace Gems
 {
     namespace Games
     {
-        public class Pagination : UdonSharpBehaviour
+        public class Pagination : EmeraldBehaviour
         {
             [SerializeField] GameObject[] pages;
             [SerializeField] TextMeshProUGUI pageLabel;
