@@ -1,7 +1,7 @@
 {
   "name": "com.jaz.gems",
   "displayName": "Jaz's Gems",
-  "version": "0.0.4",
+  "version": "1.0.0",
   "description": "Common Library for my World Development",
   "gitDependencies": {},
   "vpmDependencies": {
