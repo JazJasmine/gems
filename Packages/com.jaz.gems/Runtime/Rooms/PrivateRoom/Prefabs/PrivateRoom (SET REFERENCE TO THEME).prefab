@@ -91,10 +91,14 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   _udonSharpBackingUdonBehaviour: {fileID: 142261698424980628}
+  roomNumber: 0
   enterSpawn: {fileID: 8134771731480832547}
   exitSpawn: {fileID: 445048670332211068}
-  toggle: {fileID: 1361866612461521845}
-  lockIndicator: {fileID: 5628255949976760169}
+  lockToggle: {fileID: 1361866612461521845}
+  doorNumber: {fileID: 0}
+  openMaterial: {fileID: 0}
+  occupiedMaterial: {fileID: 0}
+  lockedMaterial: {fileID: 0}
 --- !u!114 &142261698424980628
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -704,12 +708,6 @@ PrefabInstance:
 --- !u!4 &4994567148176651731 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a7b57942a70cb494188932372ac65d86,
-    type: 3}
-  m_PrefabInstance: {fileID: 4817441093750280760}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &5628255949976760169 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: a7b57942a70cb494188932372ac65d86,
     type: 3}
   m_PrefabInstance: {fileID: 4817441093750280760}
   m_PrefabAsset: {fileID: 0}
