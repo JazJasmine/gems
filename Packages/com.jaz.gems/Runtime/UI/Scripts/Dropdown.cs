@@ -1,5 +1,7 @@
-﻿
-using System.Drawing;
+﻿// Jaz's Gems — Dropdown
+// Purpose: TMP_Dropdown wrapper with theme colors
+// Used by: generic
+
 using TMPro;
 using UdonSharp;
 using UnityEngine;
@@ -16,8 +18,7 @@ namespace Gems
         public class Dropdown : Base
         {
             [Header("Dropdown")]
-            [Tooltip("Will call <EventName> on the behaviour, including a selection(int, string) parameter. <EventName> needs to be NetworkCallable.")]
-            [SerializeField] UdonBehaviour script;
+            [SerializeField, Tooltip("Will call <EventName> on the behaviour, including a selection(int, string) parameter. <EventName> needs to be NetworkCallable.")] UdonBehaviour script;
             [SerializeField] string eventName;
 
             [Header("Internal")]

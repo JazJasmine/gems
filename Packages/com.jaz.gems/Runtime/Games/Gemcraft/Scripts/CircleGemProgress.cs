@@ -1,4 +1,7 @@
-﻿
+﻿// Jaz's Gems — CircleGemProgress
+// Purpose: Animated circular progress ring with purity star indicators
+// Used by: GemcraftUI
+
 using UdonSharp;
 using UnityEngine;
 using UnityEngine.UI;

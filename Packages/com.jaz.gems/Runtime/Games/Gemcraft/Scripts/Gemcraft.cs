@@ -1,4 +1,7 @@
-﻿
+﻿// Jaz's Gems — Gemcraft
+// Purpose: Core gacha collection game with essence economy, pulls, purity tiers, and leaderboard
+// Used by: Gemcraft game system
+
 using UdonSharp;
 using UnityEngine;
 using VRC.SDK3.Data;
@@ -33,6 +36,8 @@ namespace Gems
             [SerializeField] int tickRate;
             [SerializeField] int pityCounter;
             float essenceFraction;
+            bool _ticking;
+            bool _leaderboardUpdating;
 
             // -----------------------------
             // Roll odds (sum to 1.0)
@@ -139,16 +144,31 @@ namespace Gems
 
             private void OnEnable()
             {
-                SendCustomEventDelayedSeconds(nameof(Tick), tickRate);
-                SendCustomEventDelayedSeconds(nameof(LeaderboardUpdate), 1);
+                if (!_ticking)
+                {
+                    _ticking = true;
+                    SendCustomEventDelayedSeconds(nameof(Tick), tickRate);
+                }
+                if (!_leaderboardUpdating)
+                {
+                    _leaderboardUpdating = true;
+                    SendCustomEventDelayedSeconds(nameof(LeaderboardUpdate), 1);
+                }
+            }
+
+            private void OnDisable()
+            {
+                _ticking = false;
+                _leaderboardUpdating = false;
             }
 
             public void Tick()
             {
+                if (!_ticking) return;
                 if (!isActive) return;
 
                 // Gain fraction of an essence based on social multiplier each tick. If it's above 1, add extra essenec to gain
-                essenceFraction += tickRate * modifier.SocialMuliplier;
+                essenceFraction += tickRate * modifier.SocialMultiplier;
                 int socialGain = Mathf.FloorToInt(essenceFraction);
                 essenceFraction -= socialGain;
 
@@ -198,37 +218,57 @@ namespace Gems
                 double currentProgress = gemProgress[gemId].Number;
                 ui.UpdatePityCounter(pityCounter - localData.PullsSinceLegendary);
 
+                // Perfect pull — separate path to avoid out-of-bounds on facetGains
                 if (rarityId == 5)
                 {
-                    // Literally pulled a mythic jackpot, make gem "perfect" or gem is already perfect
-                    localData.IncreasePrestige(600);
+                    int currentPurity = PurityFromProgress(currentProgress);
                     gemProgress[gemId] = THRESH_PERFECT;
-                }
 
-                if (currentProgress >= THRESH_PRISTINE)
-                {
-                    // Gem already is at max level (either pristine or perfect, increase only prestige;
-                    localData.IncreasePrestige(50);
+                    // Award prestige: base 600 + any intermediate purity breakthroughs skipped
+                    localData.IncreasePrestige(600);
+                    int newPurity = (int)Purity.Perfect;
+                    for (int p = currentPurity + 1; p < newPurity; p++)
+                    {
+                        localData.IncreasePrestige(PrestigeForPurity(p));
+                    }
+                    ui.UpdateLocalPresitge(localData.Prestige);
+
+                    normalizedGemProgress[gemId] = 1f;
+                    PersistProgress();
+                    UpdateLockedGemList();
                     return;
                 }
 
+                // Gem already at max — only award prestige, nothing to persist
+                if (currentProgress >= THRESH_PRISTINE)
+                {
+                    localData.IncreasePrestige(50);
+                    ui.UpdateLocalPresitge(localData.Prestige);
+                    return;
+                }
+
+                // Normal pull (rarityId 0-4)
                 int gain = facetGains[rarityId];
                 double total = currentProgress + gain;
                 gemProgress[gemId] = total;
 
-                int currentPurity = PurityFromProgress(currentProgress);
-                int newPurity = PurityFromProgress(total);
+                int prevPurity = PurityFromProgress(currentProgress);
+                int nextPurity = PurityFromProgress(total);
 
-                if (newPurity > currentPurity)
+                if (nextPurity > prevPurity)
                 {
-                    // PURITY INCREASED !!
-                    int prestigeGain = PrestigeForPurity(newPurity);
+                    int prestigeGain = PrestigeForPurity(nextPurity);
                     localData.IncreasePrestige(prestigeGain);
                     ui.UpdateLocalPresitge(localData.Prestige);
                 }
 
                 normalizedGemProgress[gemId] = NormalizeProgress(total);
+                PersistProgress();
+                UpdateLockedGemList();
+            }
 
+            void PersistProgress()
+            {
                 if (VRCJson.TrySerializeToJson(gemProgress, JsonExportType.Minify, out DataToken json))
                 {
                     PlayerData.SetString("Gemcraft.Progress", json.String);
@@ -238,13 +278,11 @@ namespace Gems
                 {
                     PlayerData.SetString("Gemcraft.NormalizedProgress", normalizedJson.String);
                 }
-
-                // Check if a user has all gems unlocked now
-                UpdateLockedGemList();
             }
 
             public void LeaderboardUpdate()
             {
+                if (!_leaderboardUpdating) return;
                 if (!isActive) return;
 
                 SortPlayersByPrestige(everyoneData);

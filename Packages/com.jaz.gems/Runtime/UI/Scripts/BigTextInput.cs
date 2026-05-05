@@ -1,4 +1,8 @@
-﻿using TMPro;
+﻿// Jaz's Gems — BigTextInput
+// Purpose: Multi-line text input with character counter and optional action button
+// Used by: generic
+
+using TMPro;
 using UdonSharp;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,12 +20,10 @@ namespace Gems
             [Header("Big Text Input - Action Button")]
             [SerializeField] bool hasActionButton = false;
             [SerializeField] bool clearAfterAction = true;
-            [Tooltip("Will call <EventName> on the behaviour, including a text(string) parameter. <EventName> needs to be NetworkCallable.")]
-            [SerializeField] UdonBehaviour script;
+            [SerializeField, Tooltip("Will call <EventName> on the behaviour, including a text(string) parameter. <EventName> needs to be NetworkCallable.")] UdonBehaviour script;
             [SerializeField] string eventName;
 
             [Header("Big Text Input")]
-            [Tooltip("Make sure to sync this with the input fields actual limit (cannot be changed with Udon)")]
             [SerializeField] int characterLimit;
 
             [Header("Internal")]

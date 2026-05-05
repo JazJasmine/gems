@@ -1,4 +1,7 @@
-﻿
+﻿// Jaz's Gems — EmeraldBehaviour
+// Purpose: Base class for all Gems scripts providing colored console logging utilities
+// Used by: All Gems scripts
+
 using UdonSharp;
 using UnityEngine;
 using VRC.SDKBase;

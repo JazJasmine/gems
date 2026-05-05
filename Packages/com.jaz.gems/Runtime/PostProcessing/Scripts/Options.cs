@@ -1,4 +1,7 @@
-﻿
+﻿// Jaz's Gems — Options
+// Purpose: Post-processing UI controller managing volume weights via sliders and toggles
+// Used by: generic
+
 using Gems.UI;
 using TMPro;
 using UnityEngine;
@@ -15,8 +18,7 @@ namespace Gems
         {
             protected override string LogName => "Gems.PostProcessOptions";
             [Header("Post Processing")]
-            [SerializeField] bool aoMode; // false = MSVO; true = SAO
-            [SerializeField] bool colorMode; // false = Neutral; true = ACES
+            [SerializeField, Tooltip("Color grading mode: false = Neutral, true = ACES")] bool colorMode;
             [SerializeField, Range(0, 1)] float aoWeight = 0;
             [SerializeField, Range(0, 1)] float bloomWeight = 0;
             [SerializeField, Range(0, 1)] float grainWeight = 0;
@@ -28,8 +30,7 @@ namespace Gems
             [SerializeField] PostProcessVolume neutral;
             [SerializeField] PostProcessVolume aces;
 
-            [SerializeField] PostProcessVolume msvoAo;
-            [SerializeField] PostProcessVolume saoAo;
+            [SerializeField] PostProcessVolume ao;
 
             [SerializeField] PostProcessVolume bloom;
             [SerializeField] PostProcessVolume grain;
@@ -42,7 +43,6 @@ namespace Gems
             [Header("UI")]
             [SerializeField] Color enabledColor;
             [SerializeField] Color disabledColor;
-            [SerializeField] BoxToggle aoToggle;
             [SerializeField] BoxToggle colorToggle;
 
             [SerializeField] Slider aoSlider;
@@ -73,13 +73,7 @@ namespace Gems
                 aces.gameObject.SetActive(colorMode);
                 colorToggle.State = colorMode;
 
-                msvoAo.gameObject.SetActive(!aoMode);
-                saoAo.gameObject.SetActive(aoMode);
-                aoToggle.State = aoMode;
-
-
-                InitializePp(aoSliderLabel, aoSlider, msvoAo, aoWeight);
-                InitializePp(aoSliderLabel, aoSlider, saoAo, aoWeight);
+                InitializePp(aoSliderLabel, aoSlider, ao, aoWeight);
 
                 InitializePp(bloomSliderLabel, bloomSlider, bloom, bloomWeight);
                 InitializePp(grainSliderLabel, grainSlider, grain, grainWeight);
@@ -133,14 +127,6 @@ namespace Gems
 
             #region Ui Listeners
             [NetworkCallable]
-            public void _ToggleAoMode(bool state)
-            {
-                aoMode = state;
-                msvoAo.gameObject.SetActive(!aoMode);
-                saoAo.gameObject.SetActive(aoMode);
-            }
-
-            [NetworkCallable]
             public void _ToggleColorMode(bool state)
             {
                 colorMode = state;
@@ -151,15 +137,7 @@ namespace Gems
             public void _OnSliderAo()
             {
                 aoWeight = aoSlider.value;
-
-                SetWeight(aoSliderLabel, msvoAo, aoWeight);
-                SetWeight(aoSliderLabel, saoAo, aoWeight);
-
-                // Potentially gets easier if I just decided for one single AO mode
-                bool active = Mathf.Abs(aoWeight) >= 0.01f;
-                msvoAo.gameObject.SetActive(!aoMode && active);
-                saoAo.gameObject.SetActive(aoMode && active);
-                aoSliderLabel.color = active ? enabledColor : disabledColor;
+                SetWeight(aoSliderLabel, ao, aoWeight);
             }
 
             public void _OnSliderBloom()

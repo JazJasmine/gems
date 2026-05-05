@@ -1,4 +1,7 @@
-﻿
+﻿// Jaz's Gems — Pagination
+// Purpose: Multi-page content carousel for help screens
+// Used by: Gemcraft game system
+
 using TMPro;
 using UdonSharp;
 using UnityEngine;

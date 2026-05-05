@@ -1,3 +1,7 @@
+// Jaz's Gems — GemTheme
+// Purpose: Color palette data container for the emerald design system
+// Used by: All UI components via Base.Theme
+
 using UdonSharp;
 using UnityEngine;
 using UnityEngine.UI;
@@ -45,29 +49,4 @@ public class GemTheme : UdonSharpBehaviour
     public Color Info;
     public Color InfoLight;
     public Color InfoLightest;
-
-    // Not exposed to Udon :(
-    //public ColorBlock PrimaryColorBlock()
-    //{
-    //    ColorBlock tmp = ColorBlock.defaultColorBlock;
-    //    tmp.normalColor = Light;
-    //    tmp.highlightedColor = PrimaryLight;
-    //    tmp.pressedColor = Primary;
-    //    tmp.selectedColor = Primary;
-    //    tmp.disabledColor = SurfaceLightest;
-
-    //    return tmp;
-    //}
-
-    //public ColorBlock SecondaryColorBlock()
-    //{
-    //    ColorBlock tmp = ColorBlock.defaultColorBlock;
-    //    tmp.normalColor = Light;
-    //    tmp.highlightedColor = SecondaryLight;
-    //    tmp.pressedColor = Secondary;
-    //    tmp.selectedColor = Secondary;
-    //    tmp.disabledColor = SurfaceLightest;
-
-    //    return tmp;
-    //}
 }

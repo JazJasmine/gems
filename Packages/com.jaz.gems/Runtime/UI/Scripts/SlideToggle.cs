@@ -1,4 +1,7 @@
-﻿
+﻿// Jaz's Gems — SlideToggle
+// Purpose: Animated slide toggle (switch) with animator integration
+// Used by: generic
+
 using TMPro;
 using UdonSharp;
 using UnityEngine;
@@ -16,8 +19,7 @@ namespace Gems
             [Header("Toggle")]
             [SerializeField] bool state = false;
 
-            [Tooltip("Will call <EventName> on the behaviour, including a state(bool) parameter. <EventName> needs to be NetworkCallable.")]
-            [SerializeField] UdonBehaviour script;
+            [SerializeField, Tooltip("Will call <EventName> on the behaviour, including a state(bool) parameter. <EventName> needs to be NetworkCallable.")] UdonBehaviour script;
             [SerializeField] string eventName;
 
             [Header("Internal")]

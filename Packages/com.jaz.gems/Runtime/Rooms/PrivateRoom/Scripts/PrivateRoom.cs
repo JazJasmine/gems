@@ -1,4 +1,8 @@
-﻿using UdonSharp;
+﻿// Jaz's Gems — PrivateRoom
+// Purpose: Room occupancy tracking, locking, and privacy shutter control
+// Used by: Private room system
+
+using UdonSharp;
 using UnityEngine;
 using VRC.SDK3.Data;
 using VRC.SDK3.UdonNetworkCalling;

@@ -1,4 +1,8 @@
-﻿using TMPro;
+﻿// Jaz's Gems — RadioSelection
+// Purpose: Individual radio option in a selection group
+// Used by: RadioSelectionGroup
+
+using TMPro;
 using UdonSharp;
 using UnityEngine;
 using UnityEngine.UI;

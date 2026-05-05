@@ -1,4 +1,7 @@
-﻿
+// Jaz's Gems — Roleplayer
+// Purpose: Per-player synced role state holder; stores assigned role and hydrated role data
+// Used by: Roleplay system (RoleManager assigns roles to this)
+
 using UdonSharp;
 using UnityEngine;
 using VRC.SDK3.Data;
@@ -13,20 +16,19 @@ namespace Gems
         [UdonBehaviourSyncMode(BehaviourSyncMode.Manual)]
         public class Roleplayer : EmeraldBehaviour
         {
+            protected override string LogName => "Gems.Roleplay.Roleplayer";
+            protected override string LogColor => "#05b8e8";
+
             VRCPlayerApi owner;
 
-            // Roleplay Data - not synced for now, as in just instance owner and the owning player needs to know, which is achieved with network calls.
-            /*[UdonSynced]*/
-            string roleId;
-            /*[UdonSynced]*/
+            [SerializeField] RoleplayData data;
+
+            // Roleplay Data
+            [UdonSynced, FieldChangeCallback(nameof(RoleId))] string roleId;
             string roleName;
-            /*[UdonSynced]*/
             string description;
-            /*[UdonSynced]*/
             string vibe;
-            /*[UdonSynced]*/
             string behavior;
-            /*[UdonSynced]*/
             string rules;
 
             // Internals
@@ -40,16 +42,37 @@ namespace Gems
             }
 
             [NetworkCallable]
-            public void AssignRole(string id, string name, string d, string v, string b, string r)
+            public void AssignRole(string id)
             {
-                roleId = id;
-                roleName = name;
-                description = d;
-                vibe = v;
-                behavior = b;
-                rules = r;
+                LogInfo($"[AssignRole|{owner.displayName}]: {name} (id={id})");
 
-                // Take initial set of tasks...
+                if (!Networking.IsOwner(gameObject))
+                {
+                    Networking.SetOwner(Networking.LocalPlayer, gameObject);
+                }
+
+                RoleId = id;
+
+                RequestSerialization();
+            }
+
+            public string RoleId
+            {
+                get => roleId;
+                set
+                {
+                    roleId = value;
+
+                    DataDictionary role = data.RoleById(roleId);
+                    if (role == null) return;
+
+                    roleName = role["roleName"].String;
+                    description = role["description"].String;
+                    vibe = role["vibe"].String;
+                    behavior = role["behavior"].String;
+                    rules = role["rules"].String;
+
+                }
             }
         }
     }

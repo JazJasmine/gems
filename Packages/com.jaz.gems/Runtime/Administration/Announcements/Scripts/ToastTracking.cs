@@ -1,4 +1,7 @@
-﻿
+﻿// Jaz's Gems — ToastTracking
+// Purpose: Head-tracked billboard toast notification with smooth follow
+// Used by: TextAnnouncer
+
 using TMPro;
 using UdonSharp;
 using UnityEngine;
@@ -18,7 +21,7 @@ namespace Gems
             [SerializeField] float yOffset = -0.10f;
 
             [Header("Behavior")]
-            [SerializeField] float smoothSpeed = 18f; // higher = snappier
+            [SerializeField] float smoothSpeed = 18f;
 
             VRCPlayerApi localPlayer;
 

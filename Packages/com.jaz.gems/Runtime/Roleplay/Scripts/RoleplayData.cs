@@ -1,5 +1,7 @@
-﻿
-using Gems;
+﻿// Jaz's Gems — RoleplayData
+// Purpose: Loads and provides structured access to roleplay scenario JSON data
+// Used by: Roleplay system (RoleManager, Roleplayer, Administration)
+
 using UdonSharp;
 using UnityEngine;
 using VRC.SDK3.Data;
@@ -14,11 +16,17 @@ namespace Gems
         public class RoleplayData : EmeraldBehaviour
         {
             protected override string LogName => "Gems.Roleplay.RoleplayData";
+            protected override string LogColor => "#05e81b";
+
             [SerializeField] VRCUrl scenarioUrl;
+
             DataDictionary roleplayData;
+
+            public bool IsLoaded => roleplayData != null;
 
             void Start()
             {
+                LogInfo($"[Start]: Loading scenario data from URL...");
                 VRCStringDownloader.LoadUrl(scenarioUrl, (IUdonEventReceiver)this);
             }
 
@@ -26,39 +34,78 @@ namespace Gems
             {
                 if (VRCJson.TryDeserializeFromJson(result.Result, out DataToken json))
                 {
-                    LogInfo($"Successfully deserialized as a dictionary with {json.DataDictionary.Count} items.");
                     roleplayData = json.DataDictionary;
+                    LogInfo($"[OnStringLoadSuccess]: Data loaded.");
                 }
+                else
+                {
+                    LogError($"[OnStringLoadSuccess]: Failed to deserialize JSON. {json}");
+                }
+            }
+
+            public override void OnStringLoadError(IVRCStringDownload result)
+            {
+                LogError($"[OnStringLoadError]: Failed to load data: {result.Error}");
+            }
+
+            public DataDictionary RoleById(string id)
+            {
+                if (roleplayData == null) return null;
+                return roleplayData["roles"].DataDictionary[id].DataDictionary;
             }
 
             public DataDictionary Roles
             {
-                get => roleplayData["roles"].DataDictionary;
+                get
+                {
+                    if (roleplayData == null) return null;
+                    return roleplayData["roles"].DataDictionary;
+                }
             }
 
             public DataList RoleIds
             {
-                get => roleplayData["roles"].DataDictionary.GetKeys();
+                get
+                {
+                    if (roleplayData == null) return null;
+                    return roleplayData["roles"].DataDictionary.GetKeys();
+                }
             }
 
             public DataDictionary TaskSlots
             {
-                get => roleplayData["taskSlotsByRole"].DataDictionary;
+                get
+                {
+                    if (roleplayData == null) return null;
+                    return roleplayData["taskSlotsByRole"].DataDictionary;
+                }
             }
 
             public DataDictionary TaskPool
             {
-                get => roleplayData["taskPoolsByRole"].DataDictionary;
+                get
+                {
+                    if (roleplayData == null) return null;
+                    return roleplayData["taskPoolsByRole"].DataDictionary;
+                }
             }
 
             public DataList UrgentTasks
             {
-                get => roleplayData["fallbackTask"].DataList;
+                get
+                {
+                    if (roleplayData == null) return null;
+                    return roleplayData["urgentTasks"].DataList;
+                }
             }
 
             public DataDictionary FallbackTask
             {
-                get => roleplayData["fallbackTask"].DataDictionary;
+                get
+                {
+                    if (roleplayData == null) return null;
+                    return roleplayData["fallbackTask"].DataDictionary;
+                }
             }
         }
     }

@@ -383,17 +383,17 @@ MonoBehaviour:
       Data: 2
     - Name: 
       Entry: 7
-      Data: 23|UnityEngine.TooltipAttribute, UnityEngine.CoreModule
-    - Name: tooltip
-      Entry: 1
-      Data: Will call <EventName> on the behaviour, including a state(bool) parameter.
-        <EventName> needs to be NetworkCallable.
+      Data: 23|UnityEngine.SerializeField, UnityEngine.CoreModule
     - Name: 
       Entry: 8
       Data: 
     - Name: 
       Entry: 7
-      Data: 24|UnityEngine.SerializeField, UnityEngine.CoreModule
+      Data: 24|UnityEngine.TooltipAttribute, UnityEngine.CoreModule
+    - Name: tooltip
+      Entry: 1
+      Data: Will call <EventName> on the behaviour, including a state(bool) parameter.
+        <EventName> needs to be NetworkCallable.
     - Name: 
       Entry: 8
       Data: 

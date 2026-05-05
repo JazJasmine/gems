@@ -1,4 +1,7 @@
-﻿
+﻿// Jaz's Gems — PrivateRoomTeleporter
+// Purpose: Interaction proxy for room entry/exit teleportation
+// Used by: Private room system
+
 using UdonSharp;
 using UnityEngine;
 using VRC.SDKBase;

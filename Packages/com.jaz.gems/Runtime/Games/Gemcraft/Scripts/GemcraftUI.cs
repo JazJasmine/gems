@@ -1,4 +1,7 @@
-﻿
+﻿// Jaz's Gems — GemcraftUI
+// Purpose: Visual/UX layer for pulls, leaderboard, and gem collection display
+// Used by: Gemcraft game system
+
 using TMPro;
 using UdonSharp;
 using UnityEngine;

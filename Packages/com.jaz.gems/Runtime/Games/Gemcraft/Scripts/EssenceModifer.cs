@@ -1,4 +1,7 @@
-﻿
+﻿// Jaz's Gems — EssenceModifer
+// Purpose: Calculates social proximity multiplier for essence gain boost
+// Used by: Gemcraft game system
+
 using UdonSharp;
 using UnityEngine;
 using VRC.SDKBase;
@@ -84,7 +87,7 @@ namespace Gems
                 SendCustomEventDelayedSeconds(nameof(Sample), sampleIntervalSeconds);
             }
 
-            public float SocialMuliplier
+            public float SocialMultiplier
             {
                 get => socialMultiplier;
             }

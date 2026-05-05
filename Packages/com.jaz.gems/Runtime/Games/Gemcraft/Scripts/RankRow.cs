@@ -1,4 +1,7 @@
-﻿
+﻿// Jaz's Gems — RankRow
+// Purpose: Single leaderboard row with gem icon, purity stars, and player stats
+// Used by: GemcraftUI
+
 using TMPro;
 using UdonSharp;
 using UnityEngine;

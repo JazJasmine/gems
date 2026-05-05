@@ -1,3 +1,7 @@
+// Jaz's Gems — Base
+// Purpose: Abstract UI base class with theme application and enable/disable states
+// Used by: All UI components
+
 using UdonSharp;
 using UnityEngine;
 
@@ -34,6 +38,7 @@ namespace Gems
 
             private void OnEnable()
             {
+                if (Theme == null) return;
                 ApplyTheme();
             }
 

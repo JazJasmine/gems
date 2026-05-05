@@ -1,4 +1,8 @@
-﻿using UdonSharp;
+﻿// Jaz's Gems — GemcraftData
+// Purpose: Per-player synced data container for Gemcraft stats (essence, prestige, gems)
+// Used by: Gemcraft game system
+
+using UdonSharp;
 using UnityEngine;
 using VRC.SDKBase;
 using VRC.Udon;
@@ -11,6 +15,7 @@ namespace Gems
         public class GemcraftData : EmeraldBehaviour
         {
             VRCPlayerApi owner;
+
             [UdonSynced] int prestige;
             [UdonSynced] int totalEssenceEarned;
             [UdonSynced] int primaryGem = -1;

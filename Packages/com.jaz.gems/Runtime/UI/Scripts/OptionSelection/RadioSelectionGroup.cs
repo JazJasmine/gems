@@ -1,6 +1,10 @@
-﻿
+﻿// Jaz's Gems — RadioSelectionGroup
+// Purpose: Manager for mutually-exclusive radio selection group
+// Used by: generic
+
 using UdonSharp;
 using UnityEngine;
+using VRC.SDK3.UdonNetworkCalling;
 using VRC.SDKBase;
 using VRC.Udon;
 
@@ -18,8 +22,7 @@ namespace Gems
             [SerializeField] RadioSelection[] selections;
             [SerializeField] int state = 0;
 
-            [Tooltip("Will call <EventName> on the behaviour if selection changes, including a state(int) parameter. <EventName> needs to be NetworkCallable.")]
-            [SerializeField] UdonBehaviour script;
+            [SerializeField, Tooltip("Will call <EventName> on the behaviour if selection changes, including a state(int) parameter. <EventName> needs to be NetworkCallable.")] UdonBehaviour script;
             [SerializeField] string eventName;
 
             void Start()

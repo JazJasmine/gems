@@ -1,4 +1,7 @@
-﻿
+﻿// Jaz's Gems — Button
+// Purpose: Simple clickable button with theme support and network event callback
+// Used by: generic
+
 using TMPro;
 using UdonSharp;
 using UnityEngine;
@@ -14,8 +17,7 @@ namespace Gems
             
             [Header("Button")]
             // Might add a toggle state possibility. Not now tho
-            [Tooltip("Will call <EventName> on the behaviour if button is clicked. <EventName> needs to be NetworkCallable.")]
-            [SerializeField] UdonBehaviour script;
+            [SerializeField, Tooltip("Will call <EventName> on the behaviour if button is clicked. <EventName> needs to be NetworkCallable.")] UdonBehaviour script;
             [SerializeField] string eventName;
 
             [Header("Internal")]

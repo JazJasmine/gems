@@ -1,4 +1,7 @@
-﻿
+﻿// Jaz's Gems — TextAnnouncer
+// Purpose: Network-aware announcer for local, broadcast, and targeted toast notifications
+// Used by: generic
+
 using UdonSharp;
 using UnityEngine;
 using VRC.SDK3.UdonNetworkCalling;
