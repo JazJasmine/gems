@@ -134,6 +134,7 @@ namespace Gems
                     }
                 }
 
+                LogInfo($"[GC] OnPlayerRestored: essence={localData.Essence}, prestige={localData.Prestige}, progressCount={gemProgress.Count}");
                 ui.Initalize();
                 ui.UpdateDropdown(!localData.UnlockedAllGems);
                 ui.UpdatePityCounter(pityCounter - localData.PullsSinceLegendary);
@@ -210,12 +211,14 @@ namespace Gems
 
                 int overwrittenRarityId = isPityPull ? 4 : rarityId;
 
+                LogInfo($"[GC] Pull: essence={localData.Essence}, gemId={gemId}, rarity={overwrittenRarityId}, pity={localData.PullsSinceLegendary}");
                 ui.StartPullVisuals(gemId, overwrittenRarityId);
             }
 
             public void ApplyGemAwakening(int gemId, int rarityId)
             {
                 double currentProgress = gemProgress[gemId].Number;
+                LogInfo($"[GC] ApplyAwakening START: gemId={gemId}, rarityId={rarityId}, currentProgress={currentProgress}, prestige={localData.Prestige}");
                 ui.UpdatePityCounter(pityCounter - localData.PullsSinceLegendary);
 
                 // Perfect pull — separate path to avoid out-of-bounds on facetGains
@@ -233,6 +236,7 @@ namespace Gems
                     }
                     ui.UpdateLocalPresitge(localData.Prestige);
 
+                    LogInfo($"[GC] ApplyAwakening PERFECT: gemId={gemId}, newProgress={THRESH_PERFECT}, prestige={localData.Prestige}");
                     normalizedGemProgress[gemId] = 1f;
                     PersistProgress();
                     UpdateLockedGemList();
@@ -244,6 +248,7 @@ namespace Gems
                 {
                     localData.IncreasePrestige(50);
                     ui.UpdateLocalPresitge(localData.Prestige);
+                    LogInfo($"[GC] ApplyAwakening MAX: gemId={gemId}, +50 prestige, prestige={localData.Prestige}");
                     return;
                 }
 
@@ -254,12 +259,14 @@ namespace Gems
 
                 int prevPurity = PurityFromProgress(currentProgress);
                 int nextPurity = PurityFromProgress(total);
+                LogInfo($"[GC] ApplyAwakening NORMAL: gemId={gemId}, gain={gain}, total={total}, prevPurity={prevPurity}, nextPurity={nextPurity}, normalized={normalizedGemProgress[gemId].Number}");
 
                 if (nextPurity > prevPurity)
                 {
                     int prestigeGain = PrestigeForPurity(nextPurity);
                     localData.IncreasePrestige(prestigeGain);
                     ui.UpdateLocalPresitge(localData.Prestige);
+                    LogInfo($"[GC] ApplyAwakening PURITY UP: prestigeGain={prestigeGain}, newPrestige={localData.Prestige}");
                 }
 
                 normalizedGemProgress[gemId] = NormalizeProgress(total);
@@ -271,6 +278,7 @@ namespace Gems
             {
                 if (VRCJson.TrySerializeToJson(gemProgress, JsonExportType.Minify, out DataToken json))
                 {
+                    LogInfo($"[GC] PersistProgress: progress={json.String}");
                     PlayerData.SetString("Gemcraft.Progress", json.String);
                 }
 

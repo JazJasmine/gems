@@ -1,11 +1,11 @@
 {
   "name": "com.jaz.gems",
   "displayName": "Jaz's Gems",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Common Library for my World Development",
   "gitDependencies": {},
   "vpmDependencies": {
-    "com.vrchat.worlds": "3.10.2"
+    "com.vrchat.worlds": "3.x.x"
   },
   "author": {
     "name": "JazJasmine",

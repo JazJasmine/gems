@@ -186,6 +186,7 @@ namespace Gems
                     badSound.Play();
                 }
 
+                LogInfo($"[GC-UI] RevealResult: gemId={resultGemId}, rarity={resultRarity}");
                 gemcraft.ApplyGemAwakening(resultGemId, resultRarity);
                 SendCustomEventDelayedSeconds(nameof(DelayedUpdate), .2f);
 
@@ -195,12 +196,13 @@ namespace Gems
             {
                 var progress = gemProgress[resultGemId];
                 var target = (float)gemcraft.NormalizedProgress[resultGemId].Number;
+                int total = (int)gemcraft.GemProgress[resultGemId].Number;
+                var purityId = gemcraft.PurityFromProgress(total);
+                LogInfo($"[GC-UI] DelayedUpdate: gemId={resultGemId}, target={target}, totalProgress={total}, purityId={purityId}");
                 pullGemProgress.SetFillSmooth(target);
                 progress.SetFillSmooth(target);
                 progress.Unknown = false;
 
-                int total = (int)gemcraft.GemProgress[resultGemId].Number;
-                var purityId = gemcraft.PurityFromProgress(total);
                 progress.SetPurity(PurityToString(purityId), purityId);
 
                 SendCustomEventDelayedSeconds(nameof(FinishedUpdate), .25f);
