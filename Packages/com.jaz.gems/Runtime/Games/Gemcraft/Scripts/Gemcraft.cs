@@ -134,6 +134,9 @@ namespace Gems
                     }
                 }
 
+                RecalculateNormalizedProgress();
+                PersistProgress();
+
                 LogInfo($"[GC] OnPlayerRestored: essence={localData.Essence}, prestige={localData.Prestige}, progressCount={gemProgress.Count}");
                 ui.Initalize();
                 ui.UpdateDropdown(!localData.UnlockedAllGems);
@@ -243,11 +246,12 @@ namespace Gems
                     return;
                 }
 
-                // Gem already at max — only award prestige, nothing to persist
+                // Gem already at max — only award prestige
                 if (currentProgress >= THRESH_PRISTINE)
                 {
                     localData.IncreasePrestige(50);
                     ui.UpdateLocalPresitge(localData.Prestige);
+                    normalizedGemProgress[gemId] = 1f;
                     LogInfo($"[GC] ApplyAwakening MAX: gemId={gemId}, +50 prestige, prestige={localData.Prestige}");
                     return;
                 }
@@ -272,6 +276,20 @@ namespace Gems
                 normalizedGemProgress[gemId] = NormalizeProgress(total);
                 PersistProgress();
                 UpdateLockedGemList();
+            }
+
+            void RecalculateNormalizedProgress()
+            {
+                for (int i = 0; i < 12; i++)
+                {
+                    double progress = gemProgress[i].Number;
+                    if (progress <= 0)
+                        normalizedGemProgress[i] = 0;
+                    else if (progress >= THRESH_PRISTINE)
+                        normalizedGemProgress[i] = 1f;
+                    else
+                        normalizedGemProgress[i] = NormalizeProgress(progress);
+                }
             }
 
             void PersistProgress()
@@ -370,27 +388,11 @@ namespace Gems
             public int PurityFromProgress(double progress)
             {
                 if (progress == 99) return (int)Purity.Perfect;
-
-                if (progress <= THRESH_CLOUDED)
-                {
-                    return (int)Purity.Clouded;
-                }
-                else if (progress > THRESH_CLOUDED && progress <= THRESH_GLEAMING)
-                {
-                    return (int)Purity.Clear;
-                }
-                else if (progress > THRESH_GLEAMING && progress <= THRESH_BRILLIANT)
-                {
-                    return (int)Purity.Gleaming;
-                }
-                else if (progress > THRESH_BRILLIANT && progress <= THRESH_PRISTINE)
-                {
-                    return (int)Purity.Brilliant;
-                }
-                else
-                {
-                    return (int)Purity.Pristine;
-                }
+                if (progress < THRESH_CLOUDED) return (int)Purity.Clouded;
+                if (progress < THRESH_GLEAMING) return (int)Purity.Clear;
+                if (progress < THRESH_BRILLIANT) return (int)Purity.Gleaming;
+                if (progress < THRESH_PRISTINE) return (int)Purity.Brilliant;
+                return (int)Purity.Pristine;
             }
 
             int PrestigeForPurity(int p)
